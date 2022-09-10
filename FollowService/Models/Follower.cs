@@ -12,7 +12,7 @@ namespace FollowerService.Models
         public int? UserId { get; set; }
 
         [DynamoDBProperty("followerUserId")]
-        public int? FollowerUserId { get; set; }
-
+        public List<int>? FollowerUserId { get; set; }
+        
     }
 }
