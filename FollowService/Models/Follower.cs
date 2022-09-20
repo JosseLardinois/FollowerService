@@ -2,12 +2,11 @@
 
 namespace FollowerService.Models
 {
-    [DynamoDBTable("follower")]
+    [DynamoDBTable("followers")]
     public class Follower
     {
         [DynamoDBHashKey("id")]
-        public int? Id { get; set; }
-
+        public Guid Id { get; set; }
         [DynamoDBProperty("userId")]
         public int? UserId { get; set; }
 

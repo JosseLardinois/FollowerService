@@ -33,6 +33,7 @@ public class FollowerController : ControllerBase
     [HttpPost]
     public async Task<IActionResult> CreateFollower(Follower followerRequest)
     {
+        followerRequest.Id = Guid.NewGuid();
         var follower = await _context.LoadAsync<Follower>(followerRequest.Id);
         if (follower != null) return BadRequest($"Follower with Id {followerRequest.Id} Already Exists");
         await _context.SaveAsync(followerRequest);
