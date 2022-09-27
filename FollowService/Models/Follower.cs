@@ -5,13 +5,11 @@ namespace FollowerService.Models
     [DynamoDBTable("followers")]
     public class Follower
     {
-        [DynamoDBHashKey("id")]
-        public Guid Id { get; set; }
-        [DynamoDBProperty("userId")]
-        public int? UserId { get; set; }
+        [DynamoDBHashKey("userId")]
+        public string? UserId { get; set; }
 
-        [DynamoDBProperty("followerUserId")]
-        public List<int>? FollowerUserId { get; set; }
+        [DynamoDBRangeKey("followerId")]
+        public string? FollowerId { get; set; }
         
     }
 }

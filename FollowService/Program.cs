@@ -1,6 +1,5 @@
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
-
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -14,6 +13,7 @@ builder.Services.AddDefaultAWSOptions(awsOptions);
 
 builder.Services.AddAWSService<IAmazonDynamoDB>();
 builder.Services.AddScoped<IDynamoDBContext, DynamoDBContext>();
+//builder.Services.AddHostedService<SQSProcessor>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +22,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
 
 app.UseHttpsRedirection();
 
