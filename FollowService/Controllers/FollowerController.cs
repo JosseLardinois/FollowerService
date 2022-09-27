@@ -16,7 +16,7 @@ namespace FollowerService.Controllers;
 [ApiController]
 public class FollowerController : ControllerBase
 {
-    private readonly IDynamoDBContext _context;
+    private readonly IDynamoDBContext _context; //lets us use the DynamoDB
     private readonly IConfiguration _configuration;
 
     public FollowerController(IDynamoDBContext context, IConfiguration configuration)
