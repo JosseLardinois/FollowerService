@@ -1,5 +1,5 @@
-using FollowerService.Contract.Interfaces;
-using FollowerService.Contract.Models;
+using FollowerService.Contracts.Interfaces;
+using FollowerService.Contracts.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FollowerService2.Controllers

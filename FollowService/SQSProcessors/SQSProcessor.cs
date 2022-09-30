@@ -2,7 +2,7 @@
 using Amazon.Runtime;
 using Amazon.SQS;
 using Amazon.SQS.Model;
-using FollowerService.Contract.Models;
+using FollowerService.Contracts.Models;
 using System.Text.Json;
 
 namespace FollowerService.SQSProcessors

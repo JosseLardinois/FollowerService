@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\FollowerService.Contract\FollowerService.Contract.csproj" />
+    <ProjectReference Include="..\FollowerService.Contracts\FollowerService.Contracts.csproj" />
   </ItemGroup>
 
 </Project>
