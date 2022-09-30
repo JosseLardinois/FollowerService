@@ -1,7 +1,7 @@
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
-using FollowerService.Contract.Interfaces;
-using FollowerService.Contract.Repositories;
+using FollowerService.Contracts.Interfaces;
+using FollowerService.Contracts.Repositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
