@@ -1,0 +1,9 @@
+version: '3.4'
+
+services:
+  followerservice:
+    image: followerservice:latest
+    build:
+      context: .
+      dockerfile: FollowService/Dockerfile
+
