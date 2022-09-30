@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FollowerService", "FollowSe
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{D8FA969F-35AC-4A39-8794-F1877B6A060B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FollowerService.Test", "..\FollowerService.Test\FollowerService.Test.csproj", "{1460967D-5B16-4DED-8E18-98A8CF484835}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FollowerService.Contract", "..\FollowerService.Contract\FollowerService.Contract.csproj", "{DE6EC6A8-2BB5-4605-81D7-1A4B2AB8B343}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{D8FA969F-35AC-4A39-8794-F1877B6A060B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D8FA969F-35AC-4A39-8794-F1877B6A060B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D8FA969F-35AC-4A39-8794-F1877B6A060B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1460967D-5B16-4DED-8E18-98A8CF484835}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1460967D-5B16-4DED-8E18-98A8CF484835}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1460967D-5B16-4DED-8E18-98A8CF484835}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1460967D-5B16-4DED-8E18-98A8CF484835}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE6EC6A8-2BB5-4605-81D7-1A4B2AB8B343}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE6EC6A8-2BB5-4605-81D7-1A4B2AB8B343}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE6EC6A8-2BB5-4605-81D7-1A4B2AB8B343}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE6EC6A8-2BB5-4605-81D7-1A4B2AB8B343}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

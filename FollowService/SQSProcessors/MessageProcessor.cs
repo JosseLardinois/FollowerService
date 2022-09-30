@@ -1,7 +1,7 @@
 ﻿using Amazon.SQS.Model;
 using System.Linq;
 
-namespace FollowerService.Processors
+namespace FollowerService.Contract.SQSProcessors
 {
     public class MessageProcessor
     {

@@ -1,13 +1,13 @@
-﻿using Amazon.Runtime;
+﻿using Amazon;
+using Amazon.Runtime;
 using Amazon.SQS;
-using Amazon;
 using Amazon.SQS.Model;
-using Microsoft.Extensions.Configuration;
-using FollowerService.Models;
+using FollowerService.Contract.Models;
 using System.Text.Json;
 
-namespace FollowerService.Processors
+namespace FollowerService.SQSProcessors
 {
+
     public class SQSProcessor //: BackgroundProcessor
     {
 
@@ -45,7 +45,7 @@ namespace FollowerService.Processors
         //                var processedMessage = messageProcessor.addToMessageAndDisplay(message);
         //                Console.WriteLine("ProcessedMessage " + processedMessage.Body );//gain the nessecary information and call a producer to send the according information
         //            };
-                        
+
         //                 // If body contains request follwowers give according followers
         //            //send to dead letter queue if message contains exception
         //            //call createmethod and put message body inside 
