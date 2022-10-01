@@ -3,11 +3,11 @@ phases:
   pre_build:
     commands:
       - echo Restore started on `date`
-      - dotnet restore FollowService/FollowerService/FollowerService.csproj
+      - dotnet restore FollowerService/FollowerService/FollowerService.csproj
   build:
     commands:
       - echo Build started on `date`
-      - dotnet publish -c release -o ./build_output FollowService/FollowerService/FollowerService.csproj
+      - dotnet publish -c release -o ./build_output FollowerService/FollowerService/FollowerService.csproj
 artifacts:
   files:
     - ./**/*
