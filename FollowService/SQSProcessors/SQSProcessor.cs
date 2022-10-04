@@ -54,7 +54,7 @@ namespace FollowerService.SQSProcessors
         //        }
         //    }
         //}
-        public async Task SQSPost(Follower followerRequest)
+        public async Task SQSPost(FollowerInputModel followerRequest)
         {
             var appconfig = configuration.GetSection("AppConfig").Get<AppConfig>();
             var credentials = new BasicAWSCredentials(appconfig.AccessKeyId, appconfig.SecretAccessKey);

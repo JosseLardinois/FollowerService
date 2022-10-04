@@ -2,7 +2,7 @@ version: '3.4'
 
 services:
   followerservice:
-    image: followerservice:latest
+    image: followerservice:dev
     build:
       context: .
       dockerfile: FollowService/Dockerfile
