@@ -10,7 +10,7 @@
 *.userosscache
 *.sln.docstates
 
-FollowerService/FollowService/Properties/launchSettings.json
+**/launchSettings.json
 
 
 # User-specific files (MonoDevelop/Xamarin Studio)
