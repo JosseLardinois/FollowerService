@@ -1,0 +1,41 @@
+﻿{
+  "profiles": {
+    "FollowService": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "AWS_DEFAULT_REGION": "eu-central-1",
+        "AWS_SECRET_ACCESS_KEY": "123",
+        "AWS_ACCESS_KEY_ID": "123"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7180;http://localhost:5180"
+    },
+    "IIS Express": {
+      "commandName": "IISExpress",
+      "launchBrowser": true,
+      "launchUrl": "swagger",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
+    },
+    "Docker": {
+      "commandName": "Docker",
+      "launchBrowser": true,
+      "launchUrl": "{Scheme}://{ServiceHost}:{ServicePort}/swagger",
+      "publishAllPorts": true,
+      "useSSL": true
+    }
+  },
+  "$schema": "https://json.schemastore.org/launchsettings.json",
+  "iisSettings": {
+    "windowsAuthentication": false,
+    "anonymousAuthentication": true,
+    "iisExpress": {
+      "applicationUrl": "http://localhost:39927",
+      "sslPort": 44359
+    }
+  }
+}
