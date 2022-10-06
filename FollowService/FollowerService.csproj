@@ -10,15 +10,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="AWSSDK.Core" Version="3.7.13.13" />
+    <PackageReference Include="AWSSDK.Core" Version="3.7.13.15" />
+    <PackageReference Include="AWSSDK.DynamoDBv2" Version="3.7.5.11" />
     <PackageReference Include="AWSSDK.Extensions.NETCore.Setup" Version="3.7.2" />
-    <PackageReference Include="AWSSDK.SQS" Version="3.7.2.104" />
+    <PackageReference Include="AWSSDK.SQS" Version="3.7.2.114" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.17.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\FollowerService.Contracts\FollowerService.Contracts.csproj" />
   </ItemGroup>
 
 </Project>

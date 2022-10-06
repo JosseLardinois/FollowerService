@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectVersion>2.1</ProjectVersion>
     <DockerTargetOS>Linux</DockerTargetOS>
-    <ProjectGuid>d8fa969f-35ac-4a39-8794-f1877b6a060b</ProjectGuid>
+    <ProjectGuid>5b6a32cd-c62f-4233-80d6-abcd19d1e86d</ProjectGuid>
     <DockerLaunchAction>LaunchBrowser</DockerLaunchAction>
     <DockerServiceUrl>{Scheme}://localhost:{ServicePort}/swagger</DockerServiceUrl>
     <DockerServiceName>followerservice</DockerServiceName>

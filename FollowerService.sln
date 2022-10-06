@@ -5,14 +5,9 @@ VisualStudioVersion = 17.0.32112.339
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FollowerService", "FollowService\FollowerService.csproj", "{F16CD2EF-3085-402C-9579-583618CD7976}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FollowerService.Contracts", "FollowerService.Contracts\FollowerService.Contracts.csproj", "{2BD4ECE2-5B0F-4799-B5E1-B00A5373699D}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FollowerService.UnitTest", "FollowerService.UnitTest\FollowerService.UnitTest.csproj", "{16419067-192D-4517-837E-A984FFA4AE44}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{C5C65833-63D9-4B9C-A041-2CF322E81790}"
-	ProjectSection(SolutionItems) = preProject
-		Dockerfile.txt = Dockerfile.txt
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,10 +19,6 @@ Global
 		{F16CD2EF-3085-402C-9579-583618CD7976}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F16CD2EF-3085-402C-9579-583618CD7976}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F16CD2EF-3085-402C-9579-583618CD7976}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2BD4ECE2-5B0F-4799-B5E1-B00A5373699D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2BD4ECE2-5B0F-4799-B5E1-B00A5373699D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2BD4ECE2-5B0F-4799-B5E1-B00A5373699D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2BD4ECE2-5B0F-4799-B5E1-B00A5373699D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{16419067-192D-4517-837E-A984FFA4AE44}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{16419067-192D-4517-837E-A984FFA4AE44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{16419067-192D-4517-837E-A984FFA4AE44}.Release|Any CPU.ActiveCfg = Release|Any CPU
