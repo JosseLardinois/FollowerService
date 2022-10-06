@@ -56,13 +56,15 @@ namespace FollowerService.SQSProcessors
         //}
         public async Task SQSPost(FollowerInputModel followerRequest)
         {
-            var appconfig = configuration.GetSection("AppConfig").Get<AppConfig>();
-            var credentials = new BasicAWSCredentials(appconfig.AccessKeyId, appconfig.SecretAccessKey);
+            var sqsPostQueue = Environment.GetEnvironmentVariable("AWS_POST_SQS_QUEUE");
+            var secretKey = Environment.GetEnvironmentVariable("AWS_SECRET_ACCESS_KEY");
+            var accessKey = Environment.GetEnvironmentVariable("AWS_ACCESS_KEY_ID");
+            var credentials = new BasicAWSCredentials(accessKey, secretKey);
             var client = new AmazonSQSClient(credentials, RegionEndpoint.EUCentral1);
 
             var request = new SendMessageRequest()
             {
-                QueueUrl = appconfig.QueueUrl,
+                QueueUrl = sqsPostQueue,
                 MessageBody = JsonSerializer.Serialize(followerRequest)
             };
             _ = await client.SendMessageAsync(request);
