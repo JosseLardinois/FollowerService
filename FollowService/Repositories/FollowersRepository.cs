@@ -28,7 +28,7 @@ namespace FollowerService.Contracts.Repositories
                 FollowerId = entity.FollowerId,
             };
             
-            await _context.SaveAsync(follower);
+             await _context.SaveAsync(follower);
         }
 
         public async Task<IEnumerable<Follower>> All(Guid userId)
