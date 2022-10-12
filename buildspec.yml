@@ -8,7 +8,7 @@ phases:
     commands:
       - echo Build started on `date`
       - dotnet publish -c release -o ./build_output FollowService/FollowerService.csproj
-      dotnet test -c Release FollowService/FollowerService.UnitTest/FollowerService.UnitTest.csproj --logger trx --results-directory ./testresults
+      - dotnet test -c Release FollowService/FollowerService.UnitTest/FollowerService.UnitTest.csproj --logger trx --results-directory ./testresults
 reports:
     DotnetTestExamples:
         file-format: VisualStudioTrx
