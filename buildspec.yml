@@ -8,6 +8,13 @@ phases:
     commands:
       - echo Build started on `date`
       - dotnet publish -c release -o ./build_output FollowService/FollowerService.csproj
+      - dotnet test -c Release .\FollowerService.sln --logger trx --results-directory ./testresults
+reports:
+    DotnetTestExamples:
+        file-format: VisualStudioTrx
+        files:
+            - '**/*'
+        base-directory: './testresults'
 artifacts:
   files:
     - '**/*'
