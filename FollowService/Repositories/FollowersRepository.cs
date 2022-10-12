@@ -16,7 +16,6 @@ namespace FollowerService.Contracts.Repositories
         public FollowersRepository()
         {
 
-            
             _client = new AmazonDynamoDBClient(RegionEndpoint.EUCentral1);
             _context = new DynamoDBContext(_client);
         }
