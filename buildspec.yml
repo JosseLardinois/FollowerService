@@ -10,5 +10,5 @@ phases:
       - dotnet publish -c release -o ./build_output FollowService/FollowerService.csproj
 artifacts:
   files:
-    - **/*
+    - '**/*'
   base-directory: './build_output'
