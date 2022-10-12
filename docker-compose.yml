@@ -3,7 +3,8 @@ version: '3.4'
 services:
   followerservice:
     image: followerservice:latest
+    volumes:
+    - ~/.aws/:/root/.aws:ro
     build:
       context: .
       dockerfile: FollowService/Dockerfile
-
