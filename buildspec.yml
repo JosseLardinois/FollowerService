@@ -3,7 +3,6 @@ phases:
   pre_build:
     commands:
       - echo Restore started on `date`
-      
       - dotnet restore FollowService/FollowerService.csproj
   build:
     commands:
@@ -11,5 +10,5 @@ phases:
       - dotnet publish -c release -o ./build_output FollowService/FollowerService.csproj
 artifacts:
   files:
-    - ./**/*
+    - '**/*'
   base-directory: './build_output'
