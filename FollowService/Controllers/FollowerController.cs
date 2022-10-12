@@ -9,8 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using System.Text.Json;
 using Amazon;
+using System.Reflection;
 
-namespace FollowerService2.Controllers
+namespace FollowerService.Controllers
 {
     [Route("[controller]")]
     public class FollowersController : Controller
@@ -48,6 +49,8 @@ namespace FollowerService2.Controllers
         public async Task<ActionResult> Delete(FollowerInputModel follower)
         {
             await _repository.Remove(follower);
+            SQSProcessor processor = new SQSProcessor(_configuration);
+            await processor.SQSRemove(follower);
             return NoContent();
         }
     }
