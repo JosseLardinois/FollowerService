@@ -20,7 +20,7 @@ namespace FollowerService.Contracts.Repositories
             _context = new DynamoDBContext(_client);
         }
 
-        public async Task Add(FollowerInputModel entity)
+        public async Task Add(FollowerInputModel entity) //public async Task<Follower> Add(FollowerInputModel entity)
         {
             var follower = new Follower
             {
