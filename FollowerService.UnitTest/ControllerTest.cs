@@ -1,6 +1,9 @@
-﻿using Castle.Components.DictionaryAdapter.Xml;
+﻿using Amazon.DynamoDBv2.DataModel;
+using Castle.Components.DictionaryAdapter.Xml;
+using FluentAssertions;
 using FollowerService.Contracts.Interfaces;
 using FollowerService.Contracts.Models;
+using FollowerService.Contracts.Repositories;
 using FollowerService.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -18,9 +21,27 @@ namespace FollowerService.UnitTest
 {
     public class ControllerTest
     {
+        private readonly Mock<IFollowersRepository> followersRepositoryMock;
         public ControllerTest()
         {
-          
+            followersRepositoryMock = MockRepo.GetFollowerRepo();
+        }
+        [Fact]
+        public async Task Add()
+        {
+            var follower = new FollowerInputModel()
+            {
+                FollowerId = new Guid(),
+                UserId = new Guid("2b950b10-1d9e-460f-80f8-c0b2395c2793")
+            };
+
+            //Given
+            var handler = new FollowersRepository();
+            var result = await handler.All(follower.UserId);
+            var response = Assert.IsType<Follower>(result);
+            Assert.NotNull(response);
+
+
         }
 
         [Fact]
