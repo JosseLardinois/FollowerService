@@ -4,6 +4,7 @@ using Amazon.DynamoDBv2.DataModel;
 using Amazon.Runtime.CredentialManagement.Internal;
 using FollowerService.Contracts.Interfaces;
 using FollowerService.Contracts.Models;
+using FollowerService.SQSProcessors;
 
 namespace FollowerService.Contracts.Repositories
 {
@@ -18,9 +19,10 @@ namespace FollowerService.Contracts.Repositories
 
             _client = new AmazonDynamoDBClient(RegionEndpoint.EUCentral1);
             _context = new DynamoDBContext(_client);
+
         }
 
-        public async Task Add(FollowerInputModel entity) //public async Task<Follower> Add(FollowerInputModel entity)
+        public async Task<Follower> Add(FollowerInputModel entity) //public async Task<Follower> Add(FollowerInputModel entity)
         {
             var follower = new Follower
             {
@@ -29,6 +31,7 @@ namespace FollowerService.Contracts.Repositories
             };
             
              await _context.SaveAsync(follower);
+             return follower;
         }
 
         public async Task<IEnumerable<Follower>> All(Guid userId)

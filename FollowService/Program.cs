@@ -3,6 +3,8 @@ using Amazon.DynamoDBv2.DataModel;
 using Amazon.Runtime;
 using FollowerService.Contracts.Interfaces;
 using FollowerService.Contracts.Repositories;
+using FollowerService.Interfaces;
+using FollowerService.SQSProcessors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -17,6 +19,7 @@ awsOptions.Credentials = new EnvironmentVariablesAWSCredentials();
 builder.Services.AddDefaultAWSOptions(awsOptions);
 
 //builder.Services.AddAWSService<AmazonDynamoDB>();
+builder.Services.AddScoped<ISQSProcessor, SQSProcessor>();
 builder.Services.AddScoped<IFollowersRepository, FollowersRepository>();
 //builder.Services.AddHostedService<SQSProcessor>();
 var app = builder.Build();
