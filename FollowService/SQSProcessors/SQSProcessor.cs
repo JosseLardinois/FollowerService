@@ -3,12 +3,13 @@ using Amazon.Runtime;
 using Amazon.SQS;
 using Amazon.SQS.Model;
 using FollowerService.Contracts.Models;
+using FollowerService.Interfaces;
 using System.Text.Json;
 
 namespace FollowerService.SQSProcessors
 {
 
-    public class SQSProcessor //: BackgroundProcessor
+    public class SQSProcessor : ISQSProcessor //: BackgroundProcessor
     {
 
         private IConfiguration configuration;

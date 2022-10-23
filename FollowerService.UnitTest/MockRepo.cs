@@ -34,19 +34,20 @@ namespace FollowerService.UnitTest
             };
             var follower = new FollowerInputModel()
             {
-                FollowerId = new Guid(),
+                FollowerId = new Guid("2b950b10-1d9e-460f-80f8-c0b2395c2793"),
                 UserId = new Guid("2b950b10-1d9e-460f-80f8-c0b2395c2793")
             };
             var mockRepo = new Mock<IFollowersRepository>();
 
             mockRepo.Setup(c => c.All(follower.UserId)).ReturnsAsync(_followers); //mock the results of GetAll
 
-            //mockRepo.Setup(c => c.Add(It.IsAny<FollowerInputModel>())).Returns((Follower follower) =>
-            //{
-            //    _followers.Add(follower);
-            //    return follower;
-            //});
 
+            mockRepo.Setup(c => c.Add(It.IsAny<FollowerInputModel>())).ReturnsAsync((Follower follower) =>
+            {
+                _followers.Add(follower);
+                return follower;
+            });
+            Console.WriteLine(mockRepo);
             return mockRepo;
         }
     }

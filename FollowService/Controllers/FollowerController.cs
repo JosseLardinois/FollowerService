@@ -1,15 +1,9 @@
-using Amazon.Runtime;
-using Amazon.SQS.Model;
-using Amazon.SQS;
 using FollowerService.Contracts.Interfaces;
 using FollowerService.Contracts.Models;
-using FollowerService.SQSProcessors;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using System.Text.Json;
-using Amazon;
-using System.Reflection;
+using FollowerService.Interfaces;
+using System.Net;
+using FollowerService.Exceptions;
 
 namespace FollowerService.Controllers
 {
@@ -18,12 +12,14 @@ namespace FollowerService.Controllers
     {
         private IFollowersRepository _repository;
         private IConfiguration _configuration;
+        private ISQSProcessor _processor;
 
 
-        public FollowersController(IFollowersRepository repository, IConfiguration configuration)
+        public FollowersController(IFollowersRepository repository, IConfiguration configuration, ISQSProcessor sqsProcessor)
         {
             _repository = repository;
             _configuration = configuration;
+            _processor = sqsProcessor;
         }
         
         
@@ -31,27 +27,50 @@ namespace FollowerService.Controllers
         [HttpGet]
         public async Task<IEnumerable<Follower>> GetAllFollowers(Guid userId)
         {
-            return await _repository.All(userId);
+            try
+            {
+                return await _repository.All(userId);
+            }
+            catch (ProfileNotFoundException e)
+            {
+               return new List<Follower>();
+            }
+
         }
 
         [HttpPost]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
         [Route("Create")]
-        public async Task<ActionResult> Create(FollowerInputModel model)
+        public async Task<ActionResult<Guid>> Create([FromBody] FollowerInputModel model)//ActionResult needs to change
         {
-            await _repository.Add(model);
-            SQSProcessor processor = new SQSProcessor(_configuration);
-            await processor.SQSPost(model);
-            return Ok(model);
+            try
+            {
+                var follower = await _repository.Add(model);
+                _ = _processor.SQSPost(model);
+                return Ok(follower);
+            }
+            catch (DuplicateWaitObjectException e)
+            {
+                return Conflict(e.Message);
+            }
+
         }
 
         [HttpDelete]
         [Route("Delete")]
         public async Task<ActionResult> Delete(FollowerInputModel follower)
         {
-            await _repository.Remove(follower);
-            SQSProcessor processor = new SQSProcessor(_configuration);
-            await processor.SQSRemove(follower);
-            return NoContent();
+            try
+            {
+                await _repository.Remove(follower);
+                await _processor.SQSRemove(follower);
+                return NoContent();
+            }
+            catch (ProfileNotFoundException e)
+            {
+                return NotFound(e.Message);
+            }
+
         }
     }
 }
