@@ -1,0 +1,126 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:eu-west-1:075206908135:task-definition/task-defenitionpush:1",
+    "containerDefinitions": [
+        {
+            "name": "followerservice",
+            "image": "075206908135.dkr.ecr.eu-west-1.amazonaws.com/followservicepush:latest",
+            "cpu": 0,
+            "links": [],
+            "portMappings": [
+                {
+                    "containerPort": 80,
+                    "hostPort": 80,
+                    "protocol": "tcp"
+                },
+                {
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp"
+                }
+            ],
+            "essential": true,
+            "entryPoint": [],
+            "command": [],
+            "environment": [
+                {
+                    "name": "AWS_DEFAULT_REGION",
+                    "value": "eu-central-1"
+                },
+                {
+                    "name": "AWS_ACCESS_KEY_ID",
+                    "value": ${{ secrets.AWS_ACCESS_KEY_ID }}
+                },
+                {
+                    "name": "AWS_POST_SQS_QUEUE",
+                    "value": "https://sqs.eu-central-1.amazonaws.com/075206908135/FollowerTimelineQueue"
+                },
+                {
+                    "name": "AWS_SECRET_ACCESS_KEY",
+                    "value": ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                }
+            ],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "secrets": [],
+            "dnsServers": [],
+            "dnsSearchDomains": [],
+            "extraHosts": [],
+            "dockerSecurityOptions": [],
+            "dockerLabels": {},
+            "ulimits": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-create-group": "true",
+                    "awslogs-group": "/ecs/task-defenitionpush",
+                    "awslogs-region": "eu-west-1",
+                    "awslogs-stream-prefix": "ecs"
+                },
+                "secretOptions": []
+            },
+            "systemControls": []
+        }
+    ],
+    "family": "task-defenitionpush",
+    "executionRoleArn": "arn:aws:iam::075206908135:role/ecsTaskExecutionRole",
+    "networkMode": "awsvpc",
+    "revision": 1,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2022-10-23T15:00:49.777Z",
+    "registeredBy": "arn:aws:iam::075206908135:user/Josse",
+    "tags": [
+        {
+            "key": "ecs:taskDefinition:createdFrom",
+            "value": "ecs-console-v2"
+        },
+        {
+            "key": "ecs:taskDefinition:stackId",
+            "value": "arn:aws:cloudformation:eu-west-1:075206908135:stack/ECS-Console-V2-TaskDefinition-dfd740c0-de89-4a0b-a5a3-4ed0492f3d31/787ac900-52e3-11ed-b51e-0acbcea7703d"
+        }
+    ]
+}
