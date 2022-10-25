@@ -22,23 +22,7 @@
             "entryPoint": [],
             "command": [],
             "environment": [
-                {
-                    "name": "AWS_DEFAULT_REGION",
-                    "value": "eu-central-1"
-                },
-                {
-                    "name": "AWS_ACCESS_KEY_ID",
-                    "value": ${{ secrets.AWS_ACCESS_KEY_ID }}
-                },
-                {
-                    "name": "AWS_POST_SQS_QUEUE",
-                    "value": "https://sqs.eu-central-1.amazonaws.com/075206908135/FollowerTimelineQueue"
-                },
-                {
-                    "name": "AWS_SECRET_ACCESS_KEY",
-                    "value": ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                }
-            ],
+              ],
             "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
