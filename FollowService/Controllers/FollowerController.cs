@@ -56,14 +56,14 @@ namespace FollowerService.Controllers
 
         }
         
-        [HttpGet]
-        [ProducesResponseType((int)HttpStatusCode.OK)]
-        [Route("Create")]
-        public async Task<ActionResult<Guid>> GetTest()//ActionResult needs to change
-        {
-                return Ok();
+        //[HttpGet]
+        //[ProducesResponseType((int)HttpStatusCode.OK)]
+        //[Route("Create")]
+        //public async Task<ActionResult<Guid>> GetTest()//ActionResult needs to change
+        //{
+        //        return Ok();
 
-        }
+        //}
 
         [HttpDelete]
         [Route("Delete")]
