@@ -7,7 +7,7 @@ using FollowerService.Exceptions;
 
 namespace FollowerService.Controllers
 {
-    [Route("[controller]")]
+    [Route("/follower/[controller]")]
     public class FollowersController : Controller
     {
         private IFollowersRepository _repository;
