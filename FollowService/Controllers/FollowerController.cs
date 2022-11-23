@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using FollowerService.Interfaces;
 using System.Net;
 using FollowerService.Exceptions;
-using FollowerService.Authorization;
 using Microsoft.AspNetCore.Authorization;
 
 namespace FollowerService.Controllers

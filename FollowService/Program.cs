@@ -1,7 +1,6 @@
 using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.Runtime;
-using FollowerService.Authorization;
 using FollowerService.Contracts.Interfaces;
 using FollowerService.Contracts.Repositories;
 using FollowerService.Interfaces;
