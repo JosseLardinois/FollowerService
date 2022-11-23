@@ -5,6 +5,10 @@ using FollowerService.Contracts.Interfaces;
 using FollowerService.Contracts.Repositories;
 using FollowerService.Interfaces;
 using FollowerService.SQSProcessors;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,7 +22,32 @@ var awsOptions = builder.Configuration.GetAWSOptions();
 awsOptions.Credentials = new EnvironmentVariablesAWSCredentials();
 builder.Services.AddDefaultAWSOptions(awsOptions);
 
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        IssuerSigningKeyResolver = (s, securityToken, identifier, parameters) =>
+                        {
+                            // get JsonWebKeySet from AWS
+                            var json = new WebClient().DownloadString(parameters.ValidIssuer + "/.well-known/jwks.json");
+                            // serialize the result
+                            var keys = JsonConvert.DeserializeObject<JsonWebKeySet>(json).Keys;
+                            // cast the result to be the type expected by IssuerSigningKeyResolver
+                            return (IEnumerable<SecurityKey>)keys;
+                        },
+
+                        ValidIssuer = "https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_QRNd3f8Cu",
+                        ValidateIssuerSigningKey = true,
+                        ValidateIssuer = true,
+                        ValidateLifetime = true,
+                        ValidAudience = "6uad7uthfhv3a7p9aihdbjl3tt",
+                        ValidateAudience = false
+                    };
+                });
+
 //builder.Services.AddAWSService<AmazonDynamoDB>();
+
 builder.Services.AddScoped<ISQSProcessor, SQSProcessor>();
 builder.Services.AddScoped<IFollowersRepository, FollowersRepository>();
 //builder.Services.AddHostedService<SQSProcessor>();
@@ -33,7 +62,7 @@ if (app.Environment.IsDevelopment())
 
 
 //app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
