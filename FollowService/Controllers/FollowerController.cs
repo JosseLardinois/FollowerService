@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Mvc;
 using FollowerService.Interfaces;
 using System.Net;
 using FollowerService.Exceptions;
+using FollowerService.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace FollowerService.Controllers
 {
@@ -25,6 +27,7 @@ namespace FollowerService.Controllers
         
 
         [HttpGet]
+        [Authorize]
         public async Task<IEnumerable<Follower>> GetAllFollowers(Guid userId)
         {
             try
@@ -41,6 +44,7 @@ namespace FollowerService.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [Route("Create")]
+        [Authorize]
         public async Task<ActionResult<Guid>> Create([FromBody] FollowerInputModel model)//ActionResult needs to change
         {
             try
@@ -67,6 +71,7 @@ namespace FollowerService.Controllers
 
         [HttpDelete]
         [Route("Delete")]
+        [Authorize]
         public async Task<ActionResult> Delete(FollowerInputModel follower)
         {
             try
