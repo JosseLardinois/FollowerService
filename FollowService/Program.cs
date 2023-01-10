@@ -5,10 +5,25 @@ using FollowerService.Contracts.Interfaces;
 using FollowerService.Contracts.Repositories;
 using FollowerService.Interfaces;
 using FollowerService.SQSProcessors;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using Newtonsoft.Json;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(
+        builder =>
+        {
+            //you can configure your custom policy
+            builder.AllowAnyOrigin()
+                                .AllowAnyHeader()
+                                .AllowAnyMethod();
+        });
+});
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -17,6 +32,32 @@ builder.Services.AddSwaggerGen();
 var awsOptions = builder.Configuration.GetAWSOptions();
 awsOptions.Credentials = new EnvironmentVariablesAWSCredentials();
 builder.Services.AddDefaultAWSOptions(awsOptions);
+
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
+                {
+                    options.TokenValidationParameters = new TokenValidationParameters
+                    {
+                        IssuerSigningKeyResolver = (s, securityToken, identifier, parameters) =>
+                        {
+                            // get JsonWebKeySet from AWS
+                            var json = new WebClient().DownloadString(parameters.ValidIssuer + "/.well-known/jwks.json");
+                            // serialize the result
+                            var keys = JsonConvert.DeserializeObject<JsonWebKeySet>(json).Keys;
+                            // cast the result to be the type expected by IssuerSigningKeyResolver
+                            return (IEnumerable<SecurityKey>)keys;
+                        },
+
+                        ValidIssuer = "https://cognito-idp.eu-west-1.amazonaws.com/eu-west-1_QRNd3f8Cu",
+                        ValidateIssuerSigningKey = true,
+                        ValidateIssuer = true,
+                        ValidateLifetime = true,
+                        ValidAudience = "6uad7uthfhv3a7p9aihdbjl3tt",
+                        ValidateAudience = false
+                    };
+                });
+
+
 
 //builder.Services.AddAWSService<AmazonDynamoDB>();
 builder.Services.AddScoped<ISQSProcessor, SQSProcessor>();
@@ -33,9 +74,12 @@ if (app.Environment.IsDevelopment())
 
 
 //app.UseHttpsRedirection();
-
+app.UseCors();
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

@@ -15,13 +15,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace FollowerService.UnitTest
 {
 
-    public class ControllerTests
+    public class ControllerTestsFakeItEasy
     {
         private readonly IFollowersRepository _repository;
         private readonly IConfiguration _config;
         private readonly ISQSProcessor _processor;
 
-        public ControllerTests()
+        public ControllerTestsFakeItEasy()
         {
             _repository = A.Fake<IFollowersRepository>();
             _config = A.Fake<IConfiguration>();

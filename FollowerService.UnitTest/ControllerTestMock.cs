@@ -14,10 +14,10 @@ using FakeItEasy;
 
 namespace FollowerService.UnitTest
 {
-    public class ControllerTest
+    public class ControllerTestMock
     {
         private readonly Mock<IFollowersRepository> followersRepositoryMock;
-        public ControllerTest()
+        public ControllerTestMock()
         {
            
         }

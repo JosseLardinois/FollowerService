@@ -49,7 +49,7 @@ namespace FollowerService.UnitTest
         [Fact]
         public async Task DynamoDBTest()
         {
-            var _client = new AmazonDynamoDBClient(RegionEndpoint.EUCentral1);
+            new AmazonDynamoDBClient(RegionEndpoint.EUCentral1);
 
 
 
