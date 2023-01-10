@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace FollowerService.Controllers
 {
+    [Authorize] 
     [Route("/follower")]
     public class FollowersController : Controller
     {

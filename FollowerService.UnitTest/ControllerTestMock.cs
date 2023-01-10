@@ -10,33 +10,19 @@ using FollowerService.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Moq;
+using FakeItEasy;
 
 namespace FollowerService.UnitTest
 {
-    public class ControllerTest
+    public class ControllerTestMock
     {
         private readonly Mock<IFollowersRepository> followersRepositoryMock;
-        public ControllerTest()
+        public ControllerTestMock()
         {
-            followersRepositoryMock = MockRepo.GetFollowerRepo();
+           
         }
-        //[Fact]
-        //public async Task Add()
-        //{
-        //    var follower = new FollowerInputModel()
-        //    {
-        //        FollowerId = new Guid(),
-        //        UserId = new Guid("2b950b10-1d9e-460f-80f8-c0b2395c2793")
-        //    };
 
-        //    //Given
-        //    var handler = new FollowersRepository();
-        //    var result = await handler.All(follower.UserId);
-        //    var response = Assert.IsType<Follower>(result);
-        //    Assert.NotNull(response);
-
-
-        //}
+        
         [Fact]
         public async Task Add()
         {
@@ -56,9 +42,6 @@ namespace FollowerService.UnitTest
             var mockIConfig = new Mock<IConfiguration>();
             var mockSQS = new Mock<ISQSProcessor>();
 
-         //   var mockAmazonDbClient = new Mock<AmazonDynamoDBClient>();
-         //   var mockDynamoDBContext = new Mock<DynamoDBContext>();
-
         //Arrange
         mockFollowerRepository.Setup(c => c.Add(follower)).ReturnsAsync(_follower);
 
@@ -71,41 +54,7 @@ namespace FollowerService.UnitTest
             // assert
             Assert.NotNull(okResult);
             Assert.Equal(200, okResult.StatusCode);
-
-
-
-            //Assert
-           // result.Result.Should().NotBeNull(); //takes wrong result
         }
-
-
-        //[Fact]
-        //public async Task Add()
-        //{
-        //    //Given
-        //    var follower = new FollowerInputModel()
-        //    {
-        //        FollowerId = new Guid("2b950b10-1d9e-460f-80f8-c0b2395c2793"),
-        //        UserId = new Guid("2b950b10-1d9e-460f-80f8-c0b2395c2793")
-        //    };
-        //    var _follower = new Follower()
-        //    {
-        //        FollowerId = new Guid("2b950b10-1d9e-460f-80f8-c0b2395c2793"),
-        //        UserId = new Guid("2b950b10-1d9e-460f-80f8-c0b2395c2793")
-        //    };
-        //    var mockFollowerRepository = new Mock<IFollowersRepository>();
-        //    var mockIConfig = new Mock<IConfiguration>();
-        //    var mockSQS = new Mock<ISQSProcessor>();
-
-        //    //Arrange
-        //    mockFollowerRepository.Setup(c => c.Add(follower)).ReturnsAsync(_follower);
-
-        //    FollowersController service = new FollowersController(mockFollowerRepository.Object, mockIConfig.Object, mockSQS.Object);
-
-        //    var result = await service.Create(follower);
-        //    //Assert
-        //    result.Result.Should().NotBeNull();
-        //}
 
         [Fact]
         public async Task All()
@@ -149,9 +98,6 @@ namespace FollowerService.UnitTest
 
             //Act
             var result = await service.GetAllFollowers(follower.UserId);
-            //var result3 = result2 as ObjectResult;
-            //var result = await service.GetAllFollowers(follower.UserId) as ObjectResult;
-            //var actualResult = result2;
 
             //Assert
             Assert.Equal(3, result.Count());

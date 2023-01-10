@@ -14,6 +14,10 @@ namespace FollowerService.SQSProcessors
 
         private IConfiguration configuration;
 
+        public SQSProcessor()
+        {
+        }
+
         public SQSProcessor(IConfiguration _configuration)
         {
             configuration = _configuration;
