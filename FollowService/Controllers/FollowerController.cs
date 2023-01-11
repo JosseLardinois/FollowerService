@@ -27,6 +27,7 @@ namespace FollowerService.Controllers
         
 
         [HttpGet]
+        [Authorize]
         public async Task<IEnumerable<Follower>> GetAllFollowers(Guid userId)
         {
             try
@@ -50,18 +51,19 @@ namespace FollowerService.Controllers
                 return Ok(follower);
 
         }
-        
+
         //[HttpGet]
         //[ProducesResponseType((int)HttpStatusCode.OK)]
         //[Route("Create")]
         //public async Task<ActionResult<Guid>> GetTest()//ActionResult needs to change
         //{
-        //        return Ok();
+        //    return Ok();
 
         //}
 
         [HttpDelete]
         [Route("Delete")]
+        [Authorize]
         public async Task<ActionResult> Delete(FollowerInputModel follower)
         {
             try

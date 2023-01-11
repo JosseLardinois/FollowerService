@@ -57,9 +57,8 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                     };
                 });
 
-
-
 //builder.Services.AddAWSService<AmazonDynamoDB>();
+
 builder.Services.AddScoped<ISQSProcessor, SQSProcessor>();
 builder.Services.AddScoped<IFollowersRepository, FollowersRepository>();
 //builder.Services.AddHostedService<SQSProcessor>();
