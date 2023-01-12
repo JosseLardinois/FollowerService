@@ -44,19 +44,11 @@ namespace FollowerService.Controllers
         [HttpPost]
         [ProducesResponseType((int)HttpStatusCode.OK)]
         [Route("Create")]
-        [Authorize]
-        public async Task<ActionResult<Guid>> Create([FromBody] FollowerInputModel model)//ActionResult needs to change
+        public async Task<ActionResult<Guid>> Create([FromForm] FollowerInputModel model)//ActionResult needs to change
         {
-            try
-            {
                 var follower = await _repository.Add(model);
                 _ = _processor.SQSPost(model);
                 return Ok(follower);
-            }
-            catch (DuplicateWaitObjectException e)
-            {
-                return Conflict(e.Message);
-            }
 
         }
 

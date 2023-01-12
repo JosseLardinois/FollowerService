@@ -4,6 +4,7 @@ using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2;
 using FakeItEasy;
 using Amazon;
+using Amazon.CognitoIdentityProvider;
 
 namespace FollowerService.UnitTest
 {
@@ -51,7 +52,7 @@ namespace FollowerService.UnitTest
         {
             new AmazonDynamoDBClient(RegionEndpoint.EUCentral1);
 
-
+            
 
             Assert.Equal(_client.Config.RegionEndpoint, RegionEndpoint.EUCentral1);
             Assert.Equal(_client.Config.AuthenticationServiceName, "dynamodb");
